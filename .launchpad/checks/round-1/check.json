@@ -1,0 +1,19 @@
+{
+  "name": "round 1: five text commands",
+  "run": "node .launchpad/checks/round-1/run.mjs",
+  "timeoutSeconds": 180,
+  "tests": [
+    "slugify makes a lowercase slug",
+    "slugify drops accents and collapses separators",
+    "count counts words in any script",
+    "count of an empty text is 0",
+    "truncate cuts at a word and adds an ellipsis",
+    "truncate leaves a text that fits",
+    "truncate cuts a long word hard",
+    "title capitalizes all but the small words",
+    "title capitalizes a small word first or last",
+    "wrap keeps every line within the width",
+    "wrap puts a long word on its own line",
+    "an unknown command is refused"
+  ]
+}
