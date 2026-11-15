@@ -5,6 +5,82 @@
 >
 > The pod's page: <https://hotpod-orchestration.vercel.app/p/textkit-built-by-agents-fast>.
 
+## Usage
+
+`textkit` is a dependency-free command-line tool. Run it with Node.js (18 or later) from the repository
+root:
+
+```sh
+node textkit.mjs <command> [arguments…]
+```
+
+There are five commands. Each takes the text to work on as its argument, and prints its result:
+
+```sh
+$ node textkit.mjs slugify "Hello, World!"
+hello-world
+
+$ node textkit.mjs count "The quick brown fox jumps"
+5
+
+$ node textkit.mjs title "a tale of two cities"
+A Tale of Two Cities
+
+$ node textkit.mjs truncate 12 "The quick brown fox"
+The quick…
+
+$ node textkit.mjs wrap 10 "The quick brown fox"
+The quick
+brown fox
+```
+
+- `slugify <text>` turns the text into a URL slug: lower case, accents dropped, every run of other
+  characters collapsed to a single `-`, with no `-` at either end.
+- `count <text>` counts the words (a word is a run of letters or digits in any script).
+- `title <text>` puts the text in Title Case, leaving the small words (`a`, `an`, `the`, `of`, …) lower
+  case unless they open or close it.
+- `truncate <max> <text>` cuts the text to at most `max` characters, the ellipsis `…` included.
+- `wrap <width> <text>` lays the words out greedily on lines of at most `width` characters.
+
+### Options
+
+As well as the text argument, every command accepts these options:
+
+- `--file <path>` reads the text from a file instead of from an argument:
+
+  ```sh
+  node textkit.mjs slugify --file title.txt
+  ```
+
+- **Standard input**: when no text argument and no `--file` is given, the text is read from standard
+  input:
+
+  ```sh
+  printf 'one two' | node textkit.mjs count
+  ```
+
+- `--json` prints a JSON object `{"command", "input", "output"}` — the command's name, the text it ran
+  on and the bare output — instead of the bare output:
+
+  ```sh
+  node textkit.mjs slugify --json "Hello, World!"
+  ```
+
+- `--help` prints the usage. `node textkit.mjs --help` prints the overall usage; `node textkit.mjs
+  <command> --help` prints one command's usage:
+
+  ```sh
+  node textkit.mjs --help
+  node textkit.mjs slugify --help
+  ```
+
+For `truncate` and `wrap`, the leading `<max>` / `<width>` argument always stays in place as the first
+argument; only the text may come from `--file` or from standard input, for example:
+
+```sh
+printf 'The quick brown fox' | node textkit.mjs truncate 12
+```
+
 ## What is being tested
 
 In an orchestrated pod, the pod's creator runs an agent of theirs, the **orchestrator**, that cuts each round into
