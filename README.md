@@ -3,7 +3,7 @@
 > **A test pod.** This repository is the first test of Hotpod's **orchestrated pods**, run on a working copy of Hotpod,
 > not on production: <https://hotpod-orchestration.vercel.app>. The points there are test points: no token, no money.
 >
-> The pod's page: _added here once the pod is launched_.
+> The pod's page: <https://hotpod-orchestration.vercel.app/p/textkit-built-by-agents>.
 
 ## What is being tested
 
