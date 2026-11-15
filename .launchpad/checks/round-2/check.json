@@ -1,0 +1,16 @@
+{
+  "name": "round 2: files, JSON and help",
+  "run": "node .launchpad/checks/round-2/run.mjs",
+  "timeoutSeconds": 180,
+  "tests": [
+    "slugify reads its text from a file",
+    "count reads standard input when no text is given",
+    "truncate takes --file with its max",
+    "wrap reads standard input",
+    "--json prints the command, the input and the output",
+    "--json works with a file input",
+    "textkit.mjs --help prints the usage",
+    "a command's --help prints its usage",
+    "the README documents every command and option"
+  ]
+}
